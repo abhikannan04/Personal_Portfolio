@@ -2,6 +2,8 @@
 
 Personal portfolio of **Abhilash Kannan**, IT Executive at Banas Cooperative (Amul Group) and Full Stack & AI Developer.
 
+**Live:** [abhilashkannan.vercel.app](https://abhilashkannan.vercel.app)
+
 An interactive 3D site: a procedurally sculpted character greets visitors in the hero, then sits down at a desk and types as the page scrolls, followed by experience, tech stack, projects and a working contact form.
 
 ## Highlights
