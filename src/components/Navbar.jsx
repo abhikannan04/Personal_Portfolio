@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 import { styles } from "../styles";
-import { navLinks } from "../constants";
+import { navLinks, profile } from "../constants";
 import { logo, menu, close } from "../assets";
 
 const Navbar = () => {
@@ -10,17 +11,27 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 25 });
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 100);
+
+      // Highlight the last section whose top has passed 40% of the viewport.
+      const threshold = window.innerHeight * 0.4;
+      let current = "";
+      navLinks.forEach((nav) => {
+        const section = document.getElementById(nav.id)?.parentElement;
+        if (section && section.getBoundingClientRect().top <= threshold) {
+          current = nav.title;
+        }
+      });
+      setActive(current);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -29,24 +40,27 @@ const Navbar = () => {
     <nav
       className={`${
         styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+      } w-full flex items-center py-5 fixed top-0 z-20 transition-colors duration-300 ${
+        scrolled ? "bg-primary/90 backdrop-blur-md" : "bg-transparent"
       }`}
     >
+      <motion.div
+        aria-hidden
+        style={{ scaleX: progress }}
+        className='absolute left-0 bottom-0 h-[2px] w-full origin-left green-pink-gradient'
+      />
+
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to='/'
-          className='flex items-center gap-2'
+          className='flex items-center'
+          aria-label={`${profile.fullName}, back to top`}
           onClick={() => {
             setActive("");
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold cursor-pointer flex '>
-            Adrian &nbsp;
-            <span className='sm:block hidden'> | JavaScript Mastery</span>
-          </p>
+          <img src={logo} alt={profile.fullName} className='w-11 h-11 object-contain' />
         </Link>
 
         <ul className='list-none hidden sm:flex flex-row gap-10'>
@@ -55,7 +69,7 @@ const Navbar = () => {
               key={nav.id}
               className={`${
                 active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              } hover:text-white text-[18px] font-medium cursor-pointer transition-colors`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
@@ -64,12 +78,18 @@ const Navbar = () => {
         </ul>
 
         <div className='sm:hidden flex flex-1 justify-end items-center'>
-          <img
-            src={toggle ? close : menu}
-            alt='menu'
-            className='w-[28px] h-[28px] object-contain'
+          <button
+            type='button'
+            aria-label={toggle ? "Close menu" : "Open menu"}
+            aria-expanded={toggle}
             onClick={() => setToggle(!toggle)}
-          />
+          >
+            <img
+              src={toggle ? close : menu}
+              alt=''
+              className='w-[28px] h-[28px] object-contain'
+            />
+          </button>
 
           <div
             className={`${
@@ -80,11 +100,11 @@ const Navbar = () => {
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                  className={`font-medium cursor-pointer text-[16px] ${
                     active === nav.title ? "text-white" : "text-secondary"
                   }`}
                   onClick={() => {
-                    setToggle(!toggle);
+                    setToggle(false);
                     setActive(nav.title);
                   }}
                 >

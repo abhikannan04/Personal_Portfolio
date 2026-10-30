@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,9 +8,57 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
   color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+  }
+}
+
+/* 3D depth utilities used by <Tilt /> cards */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.pop-out-sm {
+  transform: translateZ(25px);
+}
+
+.pop-out-md {
+  transform: translateZ(45px);
+}
+
+.pop-out-lg {
+  transform: translateZ(70px);
+}
+
+html {
+  font-family: "Geist", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.02em;
+}
+
+/* Faint display text used in the preloader marquee. (A text-stroke outline
+   shows Geist's overlapping variable-font contours, so it is filled.) */
+.text-outline {
+  color: rgba(243, 243, 243, 0.09);
+}
+
+.text-gradient-violet {
+  background: linear-gradient(180deg, #d8b4ff 0%, #915eff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hash-span {
@@ -201,4 +249,96 @@
       -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
+}
+
+/* Hide the system cursor while the custom cursor (Cursor.jsx) is active. */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
+
+/* Service cards: light trace around the border and a gently floating icon. */
+@keyframes border-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-border-spin {
+  animation: border-spin 6s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-border-spin,
+  .animate-float {
+    animation: none;
+  }
+}
+
+/* Service card icon cube. */
+@keyframes cube-spin {
+  from {
+    transform: rotateX(-22deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-22deg) rotateY(360deg);
+  }
+}
+.animate-cube-spin {
+  animation: cube-spin 10s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-cube-spin {
+    animation: none;
+    transform: rotateX(-22deg) rotateY(-30deg);
+  }
+}
+
+/* Preloader marquee (CSS so it runs smoothly off the main thread). */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.animate-marquee {
+  animation: marquee 18s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee 18s linear infinite reverse;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+  }
+}
+
+/* Preloader "Welcome!" reveal. */
+@keyframes welcome {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-welcome {
+  animation: welcome 0.6s ease-out both;
 }
