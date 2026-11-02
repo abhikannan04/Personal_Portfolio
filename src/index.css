@@ -342,3 +342,31 @@ html.custom-cursor * {
 .animate-welcome {
   animation: welcome 0.6s ease-out both;
 }
+
+/* Experience timeline on phones: slimmer line gutter so cards get more width. */
+@media (max-width: 1169px) {
+  .vertical-timeline {
+    padding: 1em 0;
+  }
+  .vertical-timeline::before {
+    left: 17px;
+  }
+  .vertical-timeline-element-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 12px;
+  }
+  .vertical-timeline-element-icon span {
+    font-size: 13px;
+  }
+  .vertical-timeline-element-content {
+    margin-left: 50px !important;
+  }
+  .vertical-timeline-element-content .vertical-timeline-element-date {
+    padding: 0.6em 0 0 !important;
+    opacity: 0.8;
+  }
+  .vertical-timeline-element {
+    margin: 2.5em 0;
+  }
+}

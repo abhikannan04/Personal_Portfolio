@@ -67,23 +67,23 @@ const ExperienceCard = ({ experience }) => {
         <Tilt
           max={8}
           scale={1.02}
-          className='rounded-xl bg-[#1d1836]/95 border border-white/5 p-8 shadow-card'
+          className='rounded-xl bg-[#1d1836]/95 border border-white/5 p-5 sm:p-8 shadow-card'
         >
           <div className='pop-out-sm'>
-            <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
+            <h3 className='text-white text-[19px] sm:text-[24px] font-bold leading-snug'>{experience.title}</h3>
             <p
-              className='text-secondary text-[16px] font-semibold'
+              className='mt-1 text-secondary text-[14px] sm:text-[16px] font-semibold'
               style={{ margin: 0 }}
             >
               {experience.company_name}
             </p>
           </div>
 
-          <ul className='pop-out-sm mt-5 list-disc ml-5 space-y-2'>
+          <ul className='pop-out-sm mt-4 sm:mt-5 list-disc ml-4 sm:ml-5 space-y-2'>
             {experience.points.map((point, index) => (
               <li
                 key={`experience-point-${index}`}
-                className='text-white-100 text-[14px] pl-1 tracking-wide'
+                className='text-white-100 text-[13.5px] sm:text-[14px] leading-[1.6] pl-1 sm:tracking-wide'
               >
                 {point}
               </li>
@@ -109,7 +109,7 @@ const Experience = () => {
         </h2>
       </motion.div>
 
-      <div ref={timelineRef} className='relative mt-20 flex flex-col'>
+      <div ref={timelineRef} className='relative mt-10 sm:mt-20 flex flex-col'>
         <HelixCanvas sectionRef={timelineRef} count={experiences.length} />
 
         {/* Library animation off (it only plays once); cards animate themselves. */}

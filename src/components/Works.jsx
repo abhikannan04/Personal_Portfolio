@@ -208,7 +208,10 @@ const Works = () => (
 
     <motion.div variants={fadeIn("up", "spring", 0.2, 0.75)} className='mt-10'>
       <ProjectMarquee items={projects} />
-      <p className='text-center text-[13px] text-secondary'>Hover to pause · drag to explore</p>
+      <p className='text-center text-[13px] text-secondary'>
+        <span className='hidden sm:inline'>Hover to pause · drag to explore</span>
+        <span className='sm:hidden'>Swipe to explore</span>
+      </p>
     </motion.div>
   </>
 );
