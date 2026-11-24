@@ -6,6 +6,7 @@ import { useReducedMotion } from "framer-motion";
 import { MathUtils } from "three";
 
 import CanvasBoundary from "./CanvasBoundary";
+import { fastGL } from "./warmUp";
 import { windowPointer } from "../../hooks";
 
 const StarLayer = ({ count, radius, color, size, speed, reduceMotion }) => {
@@ -65,7 +66,7 @@ const StarsCanvas = () => {
   return (
     <div className='w-full h-screen fixed inset-0 z-[-1] pointer-events-none'>
       <CanvasBoundary>
-        <Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 1.5]}>
+        <Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 1.5]} onCreated={fastGL}>
           <Suspense fallback={null}>
             <Starfield reduceMotion={reduceMotion} />
           </Suspense>

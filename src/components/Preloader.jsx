@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { profile } from "../constants";
+import { sceneReady } from "./canvas/warmUp";
 
 const MIN_DURATION = 1000; // ms, so the intro never just flashes
-const MAX_DURATION = 3000; // ms, never block the page on slow fonts
+const MAX_DURATION = 7000; // ms, never block the page on slow devices
 const WELCOME_DURATION = 1100; // ms the "Welcome!" message stays up
 
 // Marquee row. Animated with CSS (compositor thread) rather than JS, so it
@@ -36,25 +37,30 @@ const Preloader = () => {
   const [shown, setShown] = useState(0);
   const [phase, setPhase] = useState("loading"); // loading | welcome | done
   const startRef = useRef(performance.now());
-  const fontsReady = useRef(false);
+  const ready = useRef(false);
 
   useEffect(() => {
-    // Wait for Geist so text doesn't visibly swap fonts after the reveal.
-    (document.fonts?.ready ?? Promise.resolve()).then(() => {
-      fontsReady.current = true;
+    // Wait for Geist (so text doesn't swap fonts after the reveal) and for
+    // the character's shaders to compile (so the page doesn't freeze after).
+    Promise.all([document.fonts?.ready, sceneReady]).then(() => {
+      ready.current = true;
     });
   }, []);
 
   useEffect(() => {
     let frame;
     let value = 0;
-    const tick = () => {
-      const elapsed = performance.now() - startRef.current;
+    let last = performance.now();
+    const tick = (now = performance.now()) => {
+      // Time-based easing, so the count keeps pace even on slow devices.
+      const dt = Math.min((now - last) / 1000, 0.25);
+      last = now;
+      const elapsed = now - startRef.current;
       const timeCap = Math.min(100, (elapsed / MIN_DURATION) * 100);
-      const fontCap = fontsReady.current ? 100 : 90;
-      const target = elapsed > MAX_DURATION ? 100 : Math.min(timeCap, fontCap);
+      const readyCap = ready.current ? 100 : 90;
+      const target = elapsed > MAX_DURATION ? 100 : Math.min(timeCap, readyCap);
 
-      const next = value + Math.max(0, target - value) * 0.18;
+      const next = value + Math.max(0, target - value) * (1 - Math.exp(-dt * 12));
       value = target - next < 0.5 ? Math.max(value, target) : next;
       setShown(Math.round(value));
 

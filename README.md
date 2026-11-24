@@ -1,6 +1,6 @@
 # Abhilash Kannan — Portfolio
 
-Personal portfolio of **Abhilash Kannan**, IT Executive at Banas Cooperative (Amul Group) and Full Stack & AI Developer.
+Personal portfolio of **Abhilash Kannan**, IT Executive at Banas Dairy (Amul Group) and Full Stack & AI Developer.
 
 **Live:** [abhilashkannan.vercel.app](https://abhilashkannan.vercel.app)
 

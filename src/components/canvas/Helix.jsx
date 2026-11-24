@@ -5,6 +5,7 @@ import { CatmullRomCurve3, MathUtils, Vector3 } from "three";
 
 import CanvasBoundary from "./CanvasBoundary";
 import { useInView } from "../../hooks";
+import { WarmUp, fastGL } from "./warmUp";
 
 const TURNS = 3;
 const HEIGHT = 9;
@@ -115,10 +116,11 @@ const HelixCanvas = ({ sectionRef, count }) => {
     <div ref={containerRef} aria-hidden className='pointer-events-none absolute inset-0 hidden md:block'>
       <div className='sticky top-0 h-screen opacity-60'>
         <CanvasBoundary>
-          <Canvas frameloop={inView ? "always" : "never"} dpr={[1, 1.5]} camera={{ position: [0, 0, 11], fov: 45 }}>
+          <Canvas frameloop={inView ? "always" : "never"} dpr={[1, 1.5]} camera={{ position: [0, 0, 11], fov: 45 }} onCreated={fastGL}>
             <ambientLight intensity={0.4} />
             <pointLight position={[4, 4, 6]} intensity={0.8} />
             <HelixScene sectionRef={sectionRef} count={count} reduceMotion={reduceMotion} />
+            <WarmUp />
           </Canvas>
         </CanvasBoundary>
       </div>

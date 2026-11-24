@@ -13,6 +13,7 @@ import { MathUtils } from "three";
 
 import CanvasLoader from "../Loader";
 import CanvasBoundary from "./CanvasBoundary";
+import { fastGL } from "./warmUp";
 import { useInView, useNearViewport } from "../../hooks";
 
 const CELL_SIZE = 140; // px reserved per ball
@@ -203,7 +204,7 @@ const TechCanvas = ({ technologies }) => {
             // visibly stretched the outer balls. World units = CSS pixels.
             orthographic
             camera={{ position: [0, 0, 500], zoom: 1, near: 1, far: 2000 }}
-            gl={{ preserveDrawingBuffer: true }}
+            onCreated={fastGL}
           >
             <ambientLight intensity={0.35} />
             <directionalLight position={[0, 0, 500]} intensity={0.9} />

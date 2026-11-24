@@ -17,6 +17,7 @@ import CanvasBoundary from "./CanvasBoundary";
 import { EYE, buildHead, groomSkinShader } from "./headGeometry";
 import { useInView, useMediaQuery, windowPointer } from "../../hooks";
 import { lookTargets } from "./lookTargets";
+import { WarmUp, fastGL } from "./warmUp";
 
 // A stylised character (bearded, with black glasses, in an open jacket) built entirely
 // from primitives (no model to download). It stands in the hero, and as the
@@ -778,6 +779,7 @@ const Scene = ({ progressRef, leaveRef = noLeave, layout, trackScroll }) => {
         {!reduceMotion && (
           <Sparkles count={45} scale={[9, 6, 4]} position={[0, 0.5, -2]} size={3} speed={0.35} color='#f9a8d4' />
         )}
+        <WarmUp signal />
       </Suspense>
     </>
   );
@@ -816,7 +818,7 @@ export const AvatarStage = () => {
     <div ref={containerRef} aria-hidden className='pointer-events-none absolute inset-0 z-0'>
       <div className='sticky top-0 h-screen'>
         <CanvasBoundary>
-          <Canvas frameloop={inView ? "always" : "never"} dpr={[1, 1.5]} camera={{ position: [0, 0.4, 8], fov: 35 }}>
+          <Canvas frameloop={inView ? "always" : "never"} dpr={[1, 1.5]} camera={{ position: [0, 0.4, 8], fov: 35 }} onCreated={fastGL}>
             <Scene progressRef={progressRef} leaveRef={leaveRef} layout={layouts.stage} trackScroll />
           </Canvas>
         </CanvasBoundary>
@@ -843,6 +845,7 @@ const AvatarCanvas = ({ pose = "bust" }) => {
           frameloop={inView ? "always" : "never"}
           dpr={[1, 1.5]}
           camera={{ position: [0, 0.4, pose === "bust" && isPhone ? 14 : 8], fov: 35 }}
+          onCreated={fastGL}
         >
           <Scene progressRef={progressRef} layout={layout} />
         </Canvas>

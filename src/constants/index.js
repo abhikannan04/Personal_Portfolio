@@ -33,12 +33,12 @@ export const profile = {
   // resume can be updated without redeploying; otherwise public/resume.pdf.
   resume: import.meta.env.VITE_RESUME_URL || "/resume.pdf",
   about:
-    "I'm an IT Executive at Banas Cooperative (Amul Group) and a B.Tech graduate in Electronics and Communication Engineering from SVNIT Surat. I design and deliver production-grade web platforms, real-time operational dashboards and AI solutions that support decision-making across multiple dairy plants, from the official Banas Dairy website to the SAP RFC to PostgreSQL data pipelines powering an analytics chatbot and demand forecasting. My core stack spans React.js, Node.js, Express.js, FastAPI, PostgreSQL and Python, with a keen interest in Agentic AI, Generative AI, Machine Learning, Deep Learning and RAG.",
+    "I'm an IT Executive at Banas Dairy (Amul Group) and a B.Tech graduate in Electronics and Communication Engineering from SVNIT Surat. I drive digital transformation by designing, building and optimizing internal tools that streamline operations and automate workflows, from the official Banas Dairy website and a KPI platform spanning 90 plants to SAP RFC data pipelines powering an AI chatbot and demand forecasting. My core stack spans Java, Python, React.js, Node.js, FastAPI and PostgreSQL, with a keen interest in Agentic AI, Generative AI, Machine Learning, Deep Learning and RAG.",
 };
 
 // Awards and achievements shown as chips under the About text.
 export const highlights = [
-  "CII National AI Award 2025",
+  "CII National AI Award 2026",
   "GATE Qualified 2025",
   "NTSE Qualified",
 ];
@@ -129,15 +129,15 @@ const experiences = [
     ],
   },
   {
-    title: "Executive",
-    company_name: "Banas Dairy (AMUL) · Palanpur, Gujarat",
+    title: "IT Executive",
+    company_name: "Banas Dairy (Amul Group) · Palanpur, Gujarat",
     initials: "BD",
     iconBg: "#383E56",
     date: "Jul 2025 - Present",
     points: [
-      "Driving digital transformation by designing, developing and optimizing internal tools and systems.",
-      "Streamlining operations and automating workflows to improve organizational efficiency.",
-      "Working across web development and SAP ERP to support large-scale dairy operations.",
+      "Driving digital transformation by designing, developing and optimizing internal tools that streamline operations and automate workflows.",
+      "Leading the Banas AI Intelligence Platform, a multilingual voice chatbot and demand forecasting tool built on SAP RFC data pipelines, recognised with the CII National AI Award.",
+      "Building full-stack platforms used across the organisation, from the official website and a KPI system for 90 plants to a field-service mobile app and live management dashboards.",
     ],
   },
 ];
@@ -151,7 +151,7 @@ const projects = [
   {
     name: "Banas Dairy Website",
     description:
-      "Official Banas Dairy website with a custom CMS admin panel that lets non-technical staff manage content. Optimized asset delivery and caching cut page load latency by ~80%, with ~99.6% uptime and 20,000+ visitors in the first 2 weeks.",
+      "Official website of Banas Dairy, Asia's largest dairy cooperative, with a custom CMS admin panel that lets non-technical staff manage sliders, tenders, products and more. Optimized asset delivery and caching cut page load latency by 80%, with 99.6% uptime and 20,000+ visitors in the first two weeks.",
     links: [{ label: "Live site", href: "https://banasdairy.coop" }],
   },
   {
@@ -163,27 +163,27 @@ const projects = [
   {
     name: "Banas AI Intelligence Platform",
     description:
-      "Voice-integrated analytics chatbot (Caddie) and multi-level demand and procurement prediction tool, co-developed with a vendor team. Engineered the SAP RFC to PostgreSQL pipelines behind both: under 2 s responses, ~92% forecast accuracy and ~6% MAPE across 88 districts and 5 plants.",
+      "Multilingual voice chatbot (BanasGPT, with Gujarati support) and a multi-level demand and procurement forecasting tool, built on SAP RFC to PostgreSQL data pipelines and LightGBM. 92% forecast accuracy and 6% MAPE across 7 plants, secured with MFA and RBAC on in-house servers. Winner of the CII National AI Award.",
     links: [
       { label: "Prediction Tool", href: "https://predictiontool.banasdairy.coop/app/milk/overview" },
-      { label: "Analytical Tool", href: "https://stgcaddie.banasdairy.coop:4436/" },
+      { label: "Analytical Tool", href: "https://banasai.banasdairy.coop/" },
     ],
   },
   {
     name: "Banas Live Dashboard",
     description:
-      "Centralized real-time monitoring platform aggregating live milk collection, production and sales data from SAP RFCs for management. Continuously refreshed cross-plant metrics replaced delayed manual reporting and cut decision turnaround by ~45%.",
+      "Real-time monitoring dashboard on SAP RFC data covering milk collection, production and sales, with built-in analysis that helps management take informed decisions. Replaced manual reporting and cut decision turnaround by 45%.",
     links: [{ label: "Live site", href: "https://dashboard.banasdairy.coop/" }],
   },
   {
     name: "KPI Management System",
     description:
-      "Web-based KPI platform tracking 15+ production parameters across plants in real time, with CSV uploads, daily entries, root-cause analysis, action plans, target revisions and interactive charts. Cut daily reporting from 1-2 hours to under 5 minutes.",
+      "Full-stack platform bringing 1,296 KPIs from 90 plants across 8 locations into one place, with role-based leadership dashboards, color-coded target tracking, trend and Pareto charts, and an abnormality tracker with 8,500+ issues logged and 94% closed.",
   },
   {
     name: "Banas BMC Service App",
     description:
-      "Play Store app for field technicians with a web admin panel, digitizing BMCU service records across dairy societies: equipment tracking, ticketing, preventive maintenance, photo and OTP verification and audit-ready invoicing. Cut response time by ~60%, with 100+ downloads in week one.",
+      "Field-technician app with a web admin panel for complaint ticketing, equipment tracking, preventive maintenance and photo and OTP verification, consolidating 1,500 complaints into one platform. 60% faster technician response and 1K+ downloads.",
     links: [{ label: "Play Store", href: "https://play.google.com/store/search?q=Banas%20BMC&c=apps&hl=en" }],
   },
 ];
