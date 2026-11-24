@@ -136,8 +136,6 @@ const experiences = [
     date: "Jul 2025 - Present",
     points: [
       "Driving digital transformation by designing, developing and optimizing internal tools that streamline operations and automate workflows.",
-      "Leading the Banas AI Intelligence Platform, a multilingual voice chatbot and demand forecasting tool built on SAP RFC data pipelines, recognised with the CII National AI Award.",
-      "Building full-stack platforms used across the organisation, from the official website and a KPI system for 90 plants to a field-service mobile app and live management dashboards.",
     ],
   },
 ];
