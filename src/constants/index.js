@@ -108,14 +108,13 @@ const technologies = [
 // Entries without an `icon` show `initials` in the timeline badge instead.
 const experiences = [
   {
-    title: "B.Tech, Electronics & Communication Engineering",
-    company_name: "SVNIT Surat · CGPA 8.34",
-    initials: "SV",
+    title: "IT Executive",
+    company_name: "Banas Dairy (Amul Group) · Palanpur, Gujarat",
+    initials: "BD",
     iconBg: "#383E56",
-    date: "Dec 2021 - Jun 2025",
+    date: "Jul 2025 - Present",
     points: [
-      "Coursework and projects in Machine Learning, Deep Learning, Data Structures & Algorithms and Control Systems Design.",
-      "Qualified GATE ECE 2025.",
+      "Driving digital transformation by designing, developing and optimizing internal tools that streamline operations and automate workflows.",
     ],
   },
   {
@@ -129,13 +128,14 @@ const experiences = [
     ],
   },
   {
-    title: "IT Executive",
-    company_name: "Banas Dairy (Amul Group) · Palanpur, Gujarat",
-    initials: "BD",
+    title: "B.Tech, Electronics & Communication Engineering",
+    company_name: "SVNIT Surat · CGPA 8.34",
+    initials: "SV",
     iconBg: "#383E56",
-    date: "Jul 2025 - Present",
+    date: "Dec 2021 - Jun 2025",
     points: [
-      "Driving digital transformation by designing, developing and optimizing internal tools that streamline operations and automate workflows.",
+      "Coursework and projects in Machine Learning, Deep Learning, Data Structures & Algorithms and Control Systems Design.",
+      "Qualified GATE ECE 2025.",
     ],
   },
 ];
